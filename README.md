@@ -538,3 +538,152 @@ Status
 
 Draft proposal / conceptual specification / README-level design
 Version: v0.1
+
+## Schema Usage
+
+This repository includes JSON Schema definitions and sample YAML files for validating the Trace Return Extension configuration and the Monthly Trace Report format.
+
+### Files
+
+```text
+schema/trace-return-v0.1.schema.json
+schema/monthly-report-v0.1.schema.json
+examples/trace-return.sample.yml
+examples/monthly-report.sample.yml
+
+Local validation
+
+Install dependencies:
+
+python -m pip install jsonschema PyYAML
+
+Validate the repository-level Trace Return configuration:
+
+python - <<'PY'
+import json
+import yaml
+from jsonschema import Draft202012Validator
+
+schema_path = "schema/trace-return-v0.1.schema.json"
+instance_path = "examples/trace-return.sample.yml"
+
+with open(schema_path, "r", encoding="utf-8") as f:
+    schema = json.load(f)
+
+with open(instance_path, "r", encoding="utf-8") as f:
+    instance = yaml.safe_load(f)
+
+Draft202012Validator.check_schema(schema)
+Draft202012Validator(schema).validate(instance)
+
+print(f"OK: {instance_path} is valid against {schema_path}")
+PY
+
+Validate the monthly trace report sample:
+
+python - <<'PY'
+import json
+import yaml
+from jsonschema import Draft202012Validator
+
+schema_path = "schema/monthly-report-v0.1.schema.json"
+instance_path = "examples/monthly-report.sample.yml"
+
+with open(schema_path, "r", encoding="utf-8") as f:
+    schema = json.load(f)
+
+with open(instance_path, "r", encoding="utf-8") as f:
+    instance = yaml.safe_load(f)
+
+Draft202012Validator.check_schema(schema)
+Draft202012Validator(schema).validate(instance)
+
+print(f"OK: {instance_path} is valid against {schema_path}")
+PY
+CI validation
+
+This repository can also validate the same files in GitHub Actions via:
+
+.github/workflows/validate-specs.yml
+Notes
+YAML samples are validated through their parsed object structure against the JSON Schema files.
+trace-return-v0.1.schema.json validates repository-level opt-in metadata.
+monthly-report-v0.1.schema.json validates the monthly trace ledger report format.
+
+## Repository Structure
+
+This repository is organized to separate the conceptual specification, machine-readable schemas, example files, and CI validation workflow.
+
+```text
+.
+├─ README.md
+├─ LICENSE
+├─ docs/
+│  ├─ one-page-spec.md
+│  ├─ governance.md
+│  ├─ metrics.md
+│  └─ trace-ledger.md
+├─ schema/
+│  ├─ trace-return-v0.1.schema.json
+│  └─ monthly-report-v0.1.schema.json
+├─ examples/
+│  ├─ trace-return.sample.yml
+│  └─ monthly-report.sample.yml
+└─ .github/
+   └─ workflows/
+      └─ validate-specs.yml
+
+Directory roles
+README.md
+
+Primary entry point for the repository.
+Explains the purpose of the Trace Return Extension, its design philosophy, and the overall architecture.
+
+docs/
+
+Contains human-readable supporting documents.
+
+one-page-spec.md
+A compressed, one-page version of the specification.
+governance.md
+Governance principles, participation rules, exclusion criteria, and policy evolution guidance.
+metrics.md
+Contribution estimation logic, signal categories, and scoring model notes.
+trace-ledger.md
+Monthly trace report structure, ledger concepts, and disclosure model.
+schema/
+
+Contains machine-readable JSON Schema definitions.
+
+trace-return-v0.1.schema.json
+Validates repository-level Trace Return configuration.
+monthly-report-v0.1.schema.json
+Validates the monthly trace report structure.
+examples/
+
+Contains example YAML files that match the schemas.
+
+trace-return.sample.yml
+Example repository opt-in metadata.
+monthly-report.sample.yml
+Example monthly ledger report.
+.github/workflows/
+
+Contains GitHub Actions workflows.
+
+validate-specs.yml
+Runs automated validation for the schema files and sample YAML examples.
+Design intent
+
+This structure is intentionally divided into four layers:
+
+Concept layer
+README and supporting documents explain the idea and institutional purpose.
+Specification layer
+JSON Schema files define the formal machine-readable structure.
+Example layer
+YAML samples show how the specification is meant to be used.
+Validation layer
+GitHub Actions ensures the examples remain valid against the schemas.
+
+This separation makes the repository easier to read, extend, and maintain over time.

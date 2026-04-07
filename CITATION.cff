@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite it using the metadata below."
+title: "GitHub Trace Return Extension v0.1"
+type: software
+version: "0.1.0"
+authors:
+  - family-names: "SamuraiWriter7"
+repository-code: "https://github.com/SamuraiWriter7/GitHub-Trace-Return-Extension-v0.1"
+url: "https://github.com/SamuraiWriter7/GitHub-Trace-Return-Extension-v0.1"
+abstract: >-
+  A public-first, opt-in return layer for AI-era contribution traces on GitHub.
+  This repository proposes a lightweight extension for trace visibility,
+  contribution estimation, and limited return using existing GitHub primitives.
+keywords:
+  - ai-governance
+  - royalty-os
+  - trace-ledger
+  - trace-return
+  - github-extension
+  - contribution-metrics
+  - attribution
+  - platform-governance
+  - open-source
+  - value-circulation
+license: "MIT"

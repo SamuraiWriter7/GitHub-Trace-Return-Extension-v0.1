@@ -1,0 +1,20 @@
+# Default owner for the entire repository
+* @SamuraiWriter7
+
+# Core repository files
+README.md @SamuraiWriter7
+LICENSE @SamuraiWriter7
+CITATION.cff @SamuraiWriter7
+SECURITY.md @SamuraiWriter7
+
+# Workflow integrity
+.github/workflows/* @SamuraiWriter7
+
+# Machine-readable specification files
+schema/* @SamuraiWriter7
+
+# Example files used for validation
+examples/* @SamuraiWriter7
+
+# Human-readable spec and governance docs
+docs/* @SamuraiWriter7

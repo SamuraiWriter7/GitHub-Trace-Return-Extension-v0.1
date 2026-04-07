@@ -79,3 +79,4 @@ jobs:
 
           print(f"OK: {instance_path} is valid against {schema_path}")
           PY
+       
